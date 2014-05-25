@@ -4,7 +4,7 @@
 #
 #
 # Notes: This method adds a VM to Satellite v5
-# useful for new vms but using something like cloud-init would be preferred.
+# 
 # 
 #
 ###################################
@@ -52,6 +52,7 @@ begin
   #use net/ssh to login to the new VM and activate with satellite
   Net::SSH.start(vm.ip, vmroot, :password => vmpassword) do|ssh|
   	runcommand = ssh.exec('ls -l /var/log')
+  	#runcommand = ssh.exec('bash < <(curl -s http://#{satellite}/pub/cfme/demo.sh)')
   	log(:info, "ran command:#{runcommand}")
   end  
 
